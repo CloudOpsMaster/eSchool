@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Вхід у систему</title>
+    
+	<link rel="stylesheet" href="/css/styleForLogin.css">
+	<link rel="icon" href="/img/book-icon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="/img/book-icon.png" type="image/x-icon">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/js/jwt-decode.min.js"></script>
+    <script src="/js/JS.js"></script>
+</head>
+<body>
+<form id="loginForm">
+    <h1>Форма входу</h1>
+    <fieldset id="inputs">
+        <input id="login" type="text" placeholder="Логін" autofocus required>
+        <input id="password" type="password" placeholder="Пароль" required>
+    </fieldset>
+    <div id="wrongPasswOrLogin"></div>
+    <fieldset id="actions">
+        <input type="submit" id="submitButton" value="УВІЙТИ">
+        <a href="/ui/requestPasswordReset">Забули пароль?</a>
+    </fieldset>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            var login = $("#login").val();
+            var password = $("#password").val();
+            $.ajax({
+                type: "post",
+                url: host + "signin",
+                dataType: "json",
+                data: JSON.stringify({
+                    "username": login,
+                    "password": password
+                }),
+                contentType: "application/json",
+                success: function (data, textStatus, request) {
+                    console.log(data);
+                    setJwtToken(request.getResponseHeader("Authorization"))
+                    if (request.getResponseHeader("Authorization")){
+                        var url = '/ui/';
+                        var jwtToken = getJwtToken();
+                        var decodedToken = jwt_decode(jwtToken);
+                        if (decodedToken.Roles.authority === 'ROLE_ADMIN') {
+                            console.log("HERE!");
+                            url += "admin";
+                        }
+                        if (decodedToken.Roles.authority === 'ROLE_TEACHER') {
+                            url += "teachers/" + decodedToken.jti + '/profile';
+                        }
+                        if (decodedToken.Roles.authority === 'ROLE_USER') {
+                            url += "students/" + decodedToken.jti + '/profile';
+                        }
+                        window.location.href = url;
+                    }
+                },
+                error: function(jqXHR, exception){
+                    var status = jqXHR.responseText;
+                    if (jqXHR.responseJSON.status.message == 'Bad Credentials' || jqXHR.responseJSON.data == 'User is disabled'){
+                        $("#password").val("");
+                      
+                        $('#wrongPasswOrLogin').html('Неправильний логін або пароль')
+                    }
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>

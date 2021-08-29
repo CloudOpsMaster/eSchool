@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/global-style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="icon" href="/img/book-icon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/img/book-icon.png" type="image/x-icon">
+  <!-- CSS -->
+<style type="text/css">
+.nowrap {
+  white-space: nowrap ;
+}
+.error {
+    color: red;
+}
+select {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin-bottom: 8px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 210px;
+ }
+</style>
+<head>
+    <title>Schedule</title>
+    <script src="/js/JS.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top justify-content-between" style="background-color: #002c4c !important;"></nav>
+<div class="row" id="body-row">
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2.5"></div>
+    <div class="col py-3">
+        <div class="container">
+            <div id="message" align="center"></div>
+            <div id="u1" align="center" style="padding-bottom:10px; padding-top:10px">
+                <p><h1><span>Внесення розкладу</span></h1></p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="main">
+
+                        <div class="container">
+                            <form id = "myForm">
+                                <div class="row">
+
+
+                                    <div class="col">
+                                        <p for="start"  class="control-label col-4 requiredField font-weight-bold nowrap" style="padding-top:25px">Введіть початок семестру:<span class="asteriskField">*</span></p>
+                                        <div class="controls col-8">
+                                            <input class="input-md form-control" id="start" type="date" name="startDate" style="width:200px">
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <p for="end"  class="control-label col-4 requiredField font-weight-bold nowrap" style="padding-top:25px">Введіть кінець семестру:<span class="asteriskField">*</span></p>
+                                        <div class="controls col-8">
+                                            <input class="input-md form-control" id="end" type="date" name="endDate" style="width:200px">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col">
+                                        <p for="u15_input" class="control-label col-4 requiredField font-weight-bold nowrap" style="padding-top:25px">Виберіть клас:<span class="asteriskField">*</span></p>
+                                        <div class="controls col-8">
+                                            <select id="u15_input" style="width:200px">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="container" style="padding-top:20px">
+                            <div class="row">
+                                <div class="col">
+                                    <p>Понеділок</p>
+                                    <ol id="monday">
+                                        <div class="controls1">
+                                            <form role="form" autocomplete="off">
+                                                <div class="entry input-group col-xs-3">
+                                                    <div class="row">
+                                                    <li>
+                                                        <select value="simple" name="monday" class="ax_default_droplist1" data-type="answer" class="select">
+                                                            <option name="monday" value="0">-</option>
+                                                        </select>
+
+                                                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-add" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+                                                        <span class="input-group-btn1">
+                            <button class="btn btn-primary btn-add1" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                    </li>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </ol>
+                                </div>
+
+                                <div class="col">
+                                    <p>Четвер</p>
+                                    <ol id="thursday">
+                                        <div class="controls4">
+                                            <form role="form" autocomplete="off">
+                                                <div class="entry input-group col-xs-3">
+                                                    <div class="row">
+                                                    <li>
+                                                        <select value="simple" name="thursday" class="ax_default_droplist4" data-type="answer" class="select">
+                                                            <option name="thursday" value="0">-</option>
+                                                        </select>
+
+                                                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-add" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                        <span class="input-group-btn1">
+                            <button class="btn btn-primary btn-add1" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                    </li>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </ol>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col">
+                                    <p>Вівторок</p>
+                                    <ol id="tuesday">
+                                        <div class="controls2">
+                                            <form role="form" autocomplete="off">
+                                                <div class="entry input-group col-xs-3">
+                                                    <div class="row">
+                                                    <li>
+                                                        <select value="simple" name="tuesday" class="ax_default_droplist2" data-type="answer" class="select">
+                                                            <option name="tuesday" value="0">-</option>
+                                                        </select>
+
+                                                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-add" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                        <span class="input-group-btn1">
+                            <button class="btn btn-primary btn-add1" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                    </li>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </ol>
+                                </div>
+
+                                <div class="col">
+                                    <p>П'ятниця</p>
+                                    <ol id="friday">
+                                        <div class="controls5">
+                                            <form role="form" autocomplete="off">
+                                                <div class="entry input-group col-xs-3">
+                                                    <div class="row">
+                                                    <li>
+                                                        <select value="simple" name="friday" class="ax_default_droplist5" data-type="answer" class="select">
+                                                            <option name="friday" value="0">-</option>
+                                                        </select>
+
+                                                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-add" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                        <span class="input-group-btn1">
+                            <button class="btn btn-primary btn-add1" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                    </li>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </ol>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col">
+                                    <p>Середа</p>
+                                    <ol id="wednesday">
+                                        <div class="controls3">
+                                            <form role="form" autocomplete="off">
+                                                <div class="entry input-group col-xs-3">
+                                                    <div class="row">
+                                                    <li>
+                                                        <select value="simple" name="wednesday" class="ax_default_droplist3" data-type="answer" class="select">
+                                                            <option name="wednesday" value="0">-</option>
+                                                        </select>
+
+                                                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-add" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                        <span class="input-group-btn1">
+                            <button class="btn btn-primary btn-add1" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                    </li>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </ol>
+                                </div>
+
+
+                            <div class="col">
+                                <p>Субота</p>
+                                <ol id="saturday">
+                                    <div class="controls6">
+                                        <form role="form" autocomplete="off">
+                                            <div class="entry input-group col-xs-3">
+                                                <div class="row">
+                                                    <li>
+                                                        <select value="simple" name="saturday" class="ax_default_droplist6" data-type="answer" class="select">
+                                                            <option name="saturday" value="0">-</option>
+                                                        </select>
+
+                                                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-add" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+                                                        <span class="input-group-btn1">
+                            <button class="btn btn-primary btn-add1" type="button">
+                                <span> + </span>
+                            </button>
+                        </span>
+
+
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </ol>
+                            </div>
+
+                        </div>
+                        </div>
+
+                        <div id="u17" align="center" style="text-align: center; margin: 0 auto; padding-top: 25px; padding-bottom: 100px">
+                            <button id="submitButton" class="btn btn-success" type="submit">Створити розклад</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+/****************************************Add more selects*********************************************************************/
+function addMore(obj, controls)
+{
+    $(obj).find('.entry').attr('value', 1);
+    $(obj).find('.input-group-btn1').attr('value', 1);
+    var id = 2;
+  $(obj).on('click', '.btn-add', function(e)
+    {
+        e.preventDefault();
+        var controlForm = $(controls + ' form:first'),
+            currentEntry = $(this).parents('.entry:first'),
+            newEntry = $(currentEntry.clone()).attr('value', id).appendTo(controlForm);
+            newEntry.find('.input-group-btn1').attr('value', id);
+
+        newEntry.each(function(){
+            id ++;
+                });
+        controlForm.find('.entry:not(:last) .btn-add')
+            .removeClass('btn-add').addClass('btn-remove')
+            .removeClass('btn-success').addClass('btn-danger')
+            .html('<span> - </span>');
+    }).on('click', '.btn-remove', function(e)
+    {
+        id--;
+        $(obj).find('.entry:last').attr('value', id - 1);
+        $(obj).find('.input-group-btn1:last').attr('value', id - 1);
+        $(this).parents('.entry:first').remove();
+        e.preventDefault();
+        return false;
+    });
+}
+$(function()
+{
+  addMore('#monday', '.controls1');
+  addMore('#tuesday', '.controls2');
+  addMore('#wednesday', '.controls3');
+  addMore('#thursday', '.controls4');
+  addMore('#friday', '.controls5');
+  addMore('#saturday', '.controls6');
+});
+
+
+
+
+
+function addClass(obj, controls)
+{
+      $(obj).on('click', '.btn-add1', function(e)
+    {
+        e.preventDefault();
+        var append = $(obj).find('.input-group-btn1');
+        var newField = $(obj + ' select:first').clone().appendTo(append);
+        newField.attr('value', 'addClass');
+
+        $(obj).find('.btn-add1')
+            .removeClass('btn-add1').addClass('btn-remove1')
+            .removeClass('btn-primary').addClass('btn-danger')
+            .html('<span> - </span>');
+    }).on('click', '.btn-remove1', function(e)
+    {
+    $(obj).find('.btn-remove1')
+        .removeClass('btn-remove1').addClass('btn-add1')
+        .removeClass('btn-danger').addClass('btn-primary')
+        .html('<span> + </span>');
+        $(obj).find("select[value='addClass']").remove();
+        e.preventDefault();
+        return false;
+    });
+}
+$(function()
+{
+  addClass('#monday', '.controls1');
+  addClass('#tuesday', '.controls2');
+  addClass('#wednesday', '.controls3');
+  addClass('#thursday', '.controls4');
+  addClass('#friday', '.controls5');
+  addClass('#saturday', '.controls6');
+});
+/****************************************Security*********************************************************************/
+    $(document).ready(function () {
+        refreshToken();
+        $.ajaxSetup({
+            beforeSend: function (xhr) {
+                if (getJwtToken()) {
+                    xhr.setRequestHeader("Authorization", localStorage.getItem("jwtToken"))
+                }
+            }
+        })
+    })
+/****************************************Valdation of forms*********************************************************************/
+        $(document).ready(function() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+             if(dd<10){
+                    dd='0'+dd
+                }
+                if(mm<10){
+                    mm='0'+mm
+                }
+            today = yyyy+'-'+mm+'-'+dd;
+           jQuery.validator.addMethod("minDate", function(value, element) {
+                 var inputDate = new Date(value);
+                  if (inputDate > new Date())
+                      return true;
+                  return false;
+          }, "Дата повинна бути більшою чим сьогоднішня: " + today);
+
+          jQuery.validator.addMethod("endOfDate", function(value, element) {
+            var startdatevalue = $("#start").val();
+            if (new Date(startdatevalue) < new Date(value))
+                      return true;
+                  return false;
+            }, "Дата кінця семетру повинна бути більшою чим дата початку семестру");
+
+          $("#myForm").validate({
+            rules: {
+                startDate: {
+                    required: true,
+                    date: true,
+                    minDate: true
+                },
+                endDate: {
+                    required: true,
+                    date: true,
+                    endOfDate: true
+                }
+            },
+            messages: {
+             startDate: {
+                    required: "Це поле обов'язкове"
+                },
+             endDate: {
+                    required: "Це поле обов'язкове"
+                }
+            }
+        });
+/****************************************Get subjects and classes from endpoints*********************************************************************/
+            $.getJSON(host + 'classes', function(data){
+                    var classNames = [];
+                    var id = [];
+                    $.each(data.data, function(key, value) {
+                        if (value.isActive == true) {
+                            classNames.push(value.className);
+                            id.push(value.id);
+                        }
+                    });
+                    for (i=0; i < classNames.length; i++) {
+                        $('#u15_input').append('<option value="' + id[i] + '">' + classNames[i] + '</option>');
+                    }
+                $.getJSON(host + 'subjects?classId=' + id[0], function (data) {
+                    var subjectNames = [];
+                    var idSubj = [];
+                    $.each(data.data, function(key, value) {
+                            subjectNames.push(value.subjectName);
+                            idSubj.push(value.subjectId);
+                        });
+                     for (i=0; i < subjectNames.length; i++) {
+                        $('.ax_default_droplist1').append('<option value="' + idSubj[i] + '"name="monday">' + subjectNames[i] + '</option>');
+                        $('.ax_default_droplist2').append('<option value="' + idSubj[i] + '"name="tuesday">' + subjectNames[i] + '</option>');
+                        $('.ax_default_droplist3').append('<option value="' + idSubj[i] + '"name="wednesday">' + subjectNames[i] + '</option>');
+                        $('.ax_default_droplist4').append('<option value="' + idSubj[i] + '"name="thursday">' + subjectNames[i] + '</option>');
+                        $('.ax_default_droplist5').append('<option value="' + idSubj[i] + '"name="friday">' + subjectNames[i] + '</option>');
+                        $('.ax_default_droplist6').append('<option value="' + idSubj[i] + '"name="saturday">' + subjectNames[i] + '</option>');
+                    }
+                 });
+                    if (classNames.length == 0) {
+                        $("#message").attr("class", "alert alert-danger");
+                        $("#message").html("<strong>Ще не створено класи, або всі класи є неактивними. Ви не можете створити розклад.</strong>");
+                    }
+
+                });
+
+
+               $('#u15_input').change(function() {
+               $.getJSON(host + 'subjects?classId=' + $(this).val(), function (data) {
+                var subjectNames = [];
+                var id = [];
+                $.each(data.data, function(key, value) {
+                        subjectNames.push(value.subjectName);
+                        id.push(value.subjectId);
+                    });
+               for (i = 1; i < 7; i ++)
+               $('.ax_default_droplist' + i)
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="0">-</option>')
+                    .val('0')
+                ;
+                for (i=0; i < subjectNames.length; i++) {
+                    $('.ax_default_droplist1').append('<option value="' + id[i] + '"name="monday">' + subjectNames[i] + '</option>');
+                    $('.ax_default_droplist2').append('<option value="' + id[i] + '"name="tuesday">' + subjectNames[i] + '</option>');
+                    $('.ax_default_droplist3').append('<option value="' + id[i] + '"name="wednesday">' + subjectNames[i] + '</option>');
+                    $('.ax_default_droplist4').append('<option value="' + id[i] + '"name="thursday">' + subjectNames[i] + '</option>');
+                    $('.ax_default_droplist5').append('<option value="' + id[i] + '"name="friday">' + subjectNames[i] + '</option>');
+                    $('.ax_default_droplist6').append('<option value="' + id[i] + '"name="saturday">' + subjectNames[i] + '</option>');
+                }
+                if (subjectNames.length == 0)
+                    {
+                    $("#message").attr("class", "alert alert-danger");
+                    $("#message").html("<strong>Ще не додано предметів для цього класу. Ви не можете створити розклад. Для того щоб додати предмет перейдіть за <a href='/ui/teachers/add/journal'>посиланням</a></strong>");
+                    }
+            }).fail(function (data) {
+                if (new RegExp("4[0-9][0-9]").test(data.status)){
+                    window.location.href='/ui/login'
+                }
+            });
+
+            });
+/****************************************Save data when clicking on the submitButton*********************************************************************/
+            $('#submitButton').click(function(){
+                var startdate = $('#start').val();
+                var enddate = $('#end').val();
+                var classObj = {id: $('#u15_input').find(":selected").val(), classYear: (new Date()).getFullYear(),
+                className: $("#u15_input").find('option:selected').text(), classDescription: " ", isActive: "true"};
+                classId = $('#u15_input').find(":selected").val();
+                var monday = [];
+                var tuesday = [];
+                var wednesday = [];
+                var thursday = [];
+                var friday = [];
+                var saturday = [];
+                var m1 = 0, m2 = 0, t1 = 0, t2 = 0, w1 = 0, w2 = 0, th1 = 0, th2 = 0, f1 = 0, f2 = 0, s1 = 0, s2 = 0;
+
+                 $('select[value="addClass"] > option:selected').each(function() {
+                   if($(this).attr('name') == 'monday' ) {
+                   m1++;
+                   monday.push({lessonNumber: m1, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'tuesday'){
+                   t1++;
+                   tuesday.push({lessonNumber: t1, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'wednesday'){
+                   w1++;
+                   wednesday.push({lessonNumber: w1, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'thursday'){
+                   th1++;
+                   thursday.push({lessonNumber: th1, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'friday'){
+                   f1++;
+                   friday.push({lessonNumber: f1, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'saturday'){
+                   s1++;
+                   saturday.push({lessonNumber: s1, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                  });
+
+                  $('select[value="simple"] > option:selected').each(function() {
+                   if($(this).attr('name') == 'monday' ) {
+                   m2++;
+                   monday.push({lessonNumber: m2, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'tuesday'){
+                   t2++;
+                   tuesday.push({lessonNumber: t2, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'wednesday'){
+                   w2++;
+                   wednesday.push({lessonNumber: w2, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'thursday'){
+                   th2++;
+                   thursday.push({lessonNumber: th2, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'friday'){
+                   f2++;
+                   friday.push({lessonNumber: f2, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                   if($(this).attr('name') == 'saturday'){
+                   s2++;
+                   saturday.push({lessonNumber: s2, subjectId: $(this).val(), subjectName: $(this).text(), subjectDescription: ""});
+                   }
+                  });
+
+
+                function deleteFromArray(array)
+                {
+                  var array2 = [];
+                  for (i=0; i<array.length; i++){
+                    if (array[i].subjectId != 0) { array2.push(array[i]);}
+                    }
+                   return array2;
+                }
+                $.ajax({
+                type: "post",
+                url: host + "classes/" + classId + "/schedule",
+                dataType: "json",
+                data: JSON.stringify({
+                  "startOfSemester":startdate,
+                  "endOfSemester":enddate,
+                  "className":classObj,
+                  "mondaySubjects":deleteFromArray(monday),
+                  "tuesdaySubjects":deleteFromArray(tuesday),
+                  "wednesdaySubjects":deleteFromArray(wednesday),
+                  "thursdaySubjects":deleteFromArray(thursday),
+                  "fridaySubjects":deleteFromArray(friday),
+                  "saturdaySubjects":deleteFromArray(saturday)
+                }),
+                contentType: "application/json",
+                    statusCode: {
+                       200: function() {
+                        $("#message").attr("class", "alert alert-success");
+                        $("#message").html("<strong>Розклад успішно створений</strong>");
+                    },
+                      201: function() {
+                      $("#message").attr("class", "alert alert-success");
+                      $("#message").html("<strong>Розклад успішно створений</strong>");
+                    },
+                    400: function() {
+                        $("#message").attr("class", "alert alert-danger");
+                        $("#message").html("<strong>Такий розклад уже існує, та оцінки за ці дати виставлені</strong> <br>Неможливо створити розклад з межами " + startdate + " - " + enddate + "</br>");
+                    },
+                      500: function() {
+                      $("#message").attr("class", "alert alert-danger");
+                      $("#message").html("<strong>Внутрішня помилка сервера</strong>");
+                    }
+                  },
+                    success: function (responce) {
+                        $("#start").val("");
+                        $("#end").val("");
+                        $('.controls1').find('.entry:not(:last)').remove();
+                        $('.controls2').find('.entry:not(:last)').remove();
+                        $('.controls3').find('.entry:not(:last)').remove();
+                        $('.controls4').find('.entry:not(:last)').remove();
+                        $('.controls5').find('.entry:not(:last)').remove();
+                        $('.controls6').find('.entry:not(:last)').remove();
+                        $('.main').find('select[value="addClass"]').remove();
+                        $('.main').find('.btn-remove1')
+                                .removeClass('btn-remove1').addClass('btn-add1')
+                                .removeClass('btn-danger').addClass('btn-primary')
+                                .html('<span> + </span>');
+                        $('select').val("0");
+                        $('#u15_input').val($('#u15_input option:first').val());
+                    }
+            });
+        })
+    })
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#sidebar-container").load("/views/admin-sidebar.html");
+        $(".navbar").load("/views/admin-header.html");
+    });
+</script>
+</body>
+</html>
