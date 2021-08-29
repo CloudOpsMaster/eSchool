@@ -9,9 +9,6 @@ MYSQL_ROOT_PASSWORD=legme876FCTFEfg1
 #Updating OS
 sudo apt update && sudo apt upgrade -y
 
-#Installing git
-sudo apt install git
-
 #Installing docker
 sudo apt install docker.io -y
 
@@ -22,7 +19,7 @@ sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 cd /home/ubuntu
 
 #Clonning eschool repository
-git clone https://github.com/yurkovskiy/eSchool.git
+git clone https://github.com/Maks0123/eSchool.git
 
 #Set current year in ScheduleControllerIntegrationTest
 sed -i 's/2019/'`date +%Y`'/g' ./eSchool/src/test/java/academy/softserve/eschool/controller/ScheduleControllerIntegrationTest.java
