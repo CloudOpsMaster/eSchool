@@ -4,9 +4,10 @@ COPY src /tmp/src/
 WORKDIR /tmp/
 
 RUN mvn clean
-RUN package -DskipTests
+RUN mvn package -DskipTests
 
 FROM openjdk:8-jdk-alpine
 COPY --from=MAVEN_TOOL_CHAIN /tmp/target/eschool.jar eschool.jar
 EXPOSE 8080
+USER openjdk
 ENTRYPOINT ["java", "-jar", "eschool.jar"]
