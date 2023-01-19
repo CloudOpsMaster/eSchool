@@ -46,7 +46,7 @@ public class ScheduleControllerIntegrationTest {
     @Autowired
     private MockMvc mvc;
 
-    String expectedJSON = "{\"startOfSemester\":\"2019-09-01\",\"endOfSemester\":\"2019-12-01\"," +
+    String expectedJSON = "{\"startOfSemester\":\"2023-01-01\",\"endOfSemester\":\"2023-12-01\"," +
             "\"className\":" +
                 "{\"id\":2,\"classYear\":2018,\"className\":\"7-А\",\"classDescription\":\"\",\"isActive\":true,\"numOfStudents\":3}," +
             "\"mondaySubjects\":" +
@@ -93,7 +93,7 @@ public class ScheduleControllerIntegrationTest {
                 .headers(headers))
                 .andExpect(status().isOk())
                 .andExpect((MockMvcResultMatchers.jsonPath("$.data.className")).isNotEmpty())
-                .andExpect((MockMvcResultMatchers.jsonPath("$.data.startOfSemester")).value("2019-09-01"));
+                .andExpect((MockMvcResultMatchers.jsonPath("$.data.startOfSemester")).value("2023-01-01"));
     }
 
 }

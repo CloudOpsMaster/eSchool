@@ -7,7 +7,9 @@ RUN mvn clean
 RUN mvn package -DskipTests
 
 FROM openjdk:8-jdk-alpine
+WORKDIR /usr/src/app
 COPY --from=MAVEN_TOOL_CHAIN /tmp/target/eschool.jar eschool.jar
+RUN adduser -D node && chown -R node /usr/src/app
+USER node
 EXPOSE 8080
-USER openjdk
 ENTRYPOINT ["java", "-jar", "eschool.jar"]

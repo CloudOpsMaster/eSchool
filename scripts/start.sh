@@ -27,3 +27,4 @@ docker run --name eschool-backend \
      --network eschool-network \
      -p 8080:8080 \
      -d eschool:1.0
+
